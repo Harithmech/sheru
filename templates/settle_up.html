@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settle Up</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Settle Up</h1>
+    <p>
+      Each item should contribute equally to the expenditure. If any item spends
+      less than the average, it owes the difference to others.
+    </p>
+    <ul>
+      {% for expenditure in expenditures %}
+      <li>
+        {{ expenditure.item }} - ${{ expenditure.amount }} | {% if
+        expenditure.difference > 0 %} Owes: ${{ expenditure.difference }} {%
+        else %} Settled up {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}">Back to Expenditure Tracker</a>
+  </body>
+</html>
